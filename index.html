@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IC50 Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        #calculator {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        #result {
+            font-weight: bold;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calculator">
+    <h2>IC50 Calculator</h2>
+    <div class="input-group">
+        <label for="concentration">Concentration (uM):</label>
+        <input id="concentration" type="number" step="any" required>
+    </div>
+    <div class="input-group">
+        <label for="percentage">Inhibition Percentage (%):</label>
+        <input id="percentage" type="number" step="any" required>
+    </div>
+    <button onclick="calculateIC50()">Calculate IC50</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculateIC50() {
+        var concentration = parseFloat(document.getElementById("concentration").value);
+        var percentage = parseFloat(document.getElementById("percentage").value);
+
+        if (isNaN(concentration) || isNaN(percentage)) {
+            document.getElementById("result").innerText = "Please enter valid numbers for concentration and percentage.";
+            return;
+        }
+
+        var ic50 = concentration * (percentage / 100);
+        document.getElementById("result").innerText = "IC50 Value: " + ic50.toFixed(2) + " uM";
+    }
+</script>
+
+</body>
+</html>
